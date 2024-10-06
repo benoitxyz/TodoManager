@@ -1,3 +1,4 @@
 todoManager/
 venv/
 task.todo
+__pycache__

@@ -2,6 +2,7 @@ import sys
 
 from helps import showHelp, showHelpInit
 from init import init
+from list import list
 
 if __name__ == "__main__" :
     if len(sys.argv) == 1 :
@@ -21,3 +22,9 @@ if __name__ == "__main__" :
                 showHelpInit()
                 exit(1)
             exit(0)
+        case "list" :
+            if len(sys.argv) > 2 :
+                print("Too much argument")
+            else :
+                list()
+                exit(0)

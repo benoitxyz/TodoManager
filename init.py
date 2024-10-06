@@ -1,21 +1,28 @@
 import os
+from config import Config
 
 def init(titre):
-    fichier_todo = 'task.todo'
-    commentaire_attendu = "<!-- File managed by TodoManager version=1 -->"
 
-    if os.path.isfile(fichier_todo):
-        # Vérifie si le commentaire est présent dans le fichier
-        with open(fichier_todo, 'r') as f:
-            contenu = f.read()
-            if commentaire_attendu in contenu:
-                print(f"Todo file '{fichier_todo}' is already present.")
-            else:
-                print(f"A todo file with target name '{fichier_todo}' already existe but this not seems to be manage by todoManager.")
+    if test_todo_file() == "OK" :
+        print('Todo list already initialized')
+    elif test_todo_file() == "WRONG" :
+        print('A file with target name {TODO_FILE} already exist in the directory')
     else:
         # Si le fichier n'existe pas, le créer et y ajouter le titre et le commentaire
-        with open(fichier_todo, 'w') as f:
+        with open(Config.TODO_FILE, 'w') as f:
             f.write(f"# {titre}\n")
             f.write("\n")  # Ligne vide pour séparer le titre du commentaire
-            f.write(commentaire_attendu + "\n")
-        print(f"Todo file '{fichier_todo}' had been initialized")
+            f.write(Config.END_FILE_COMMENT + "\n")
+        print(f"Todo file '{Config.TODO_FILE}' had been initialized")
+    
+def test_todo_file():
+    if os.path.isfile(Config.TODO_FILE):
+        # Vérifie si le commentaire est présent dans le fichier
+        with open(Config.TODO_FILE, 'r') as f:
+            contenu = f.read()
+            if Config.END_FILE_COMMENT in contenu:
+                return "OK"
+            else:
+                return "WRONG"
+    else:
+        return "MISSING"
