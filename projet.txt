@@ -1,0 +1,12 @@
+tdm - ToDo Manager
+
+
+Lige de commande :
+    help : Affiche des lignes de commande disponible
+    init : Création du fichier tasks.todo
+    add : Ajout d'une tache
+    list : Liste les taches
+    done : marquer la tache comme terminé
+
+Les stockage se fera dans un fichier tasks.toto
+
