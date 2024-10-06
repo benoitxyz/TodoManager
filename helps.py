@@ -42,3 +42,18 @@ def showHelpAdd():
         python todoManager.py add "task to do"
     """
     print(help_text)
+
+def showHelpDelete():
+    help_text = """
+    todoManager Delete:
+
+    Used to delete todo to your list.
+
+    Usage :
+        python todoManager.py delete <todo number or range>
+    
+    Example :
+        python todoManager.py delete 3
+        python todoManager.py delete 1-3
+    """
+    print(help_text)

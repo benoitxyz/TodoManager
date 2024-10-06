@@ -1,9 +1,9 @@
 import sys
 
-from helps import showHelp, showHelpInit, showHelpAdd
+from helps import showHelp, showHelpInit, showHelpAdd, showHelpDelete
 from init import init
 from list import list
-from todo import add_todo
+from todo import add_todo, delete_todo
 
 if __name__ == "__main__" :
     if len(sys.argv) == 1 :
@@ -34,3 +34,9 @@ if __name__ == "__main__" :
                 showHelpAdd()
             else :
                 add_todo(sys.argv[2])
+        case "delete" :
+            if len(sys.argv) < 3 :
+                showHelpDelete()
+            else :
+                delete_todo(sys.argv[2])
+                exit(0)
