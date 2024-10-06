@@ -31,3 +31,14 @@ def showHelpInit():
         python todoManager.py help "Tasks List Name"
     """
     print(help_text)
+
+def showHelpAdd():
+    help_text = """
+    todoManager Add:
+
+    Used to add todo to your list.
+
+    Usage :
+        python todoManager.py add "task to do"
+    """
+    print(help_text)
