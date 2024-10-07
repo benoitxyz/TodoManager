@@ -57,3 +57,20 @@ def showHelpDelete():
         python todoManager.py delete 1-3
     """
     print(help_text)
+
+def showHelpComplete():
+    help_text = """
+    todoManager Complete:
+
+    Used to complete todo on your list.
+
+    Usage :
+        python todoManager.py complete <todo number or range>
+    
+    Example :
+        python todoManager.py complete 3
+        python todoManager.py complete 1-3
+        python todoManager.py complete 1,4
+
+    """
+    print(help_text)
