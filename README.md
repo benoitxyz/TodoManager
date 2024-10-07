@@ -1,6 +1,6 @@
 # Task Manager
 
-Task Manager is a simple and effective task management tool designed to help you organize your daily tasks. With this tool, you can easily add, remove, and display your tasks in a Markdown file.
+Task Manager is a simple and effective task management tool designed to help you organize your daily tasks. With this tool, fully in CLI, you can easily add, remove, and display your tasks in a Markdown file.
 
 ## Features
 - **Add Tasks**: Easily add tasks to your list. 
@@ -28,14 +28,21 @@ Task Manager is a simple and effective task management tool designed to help you
     ```bash
     tdm init
 
-4. Run the main script: tdm <commande>
+4. Run the main script: 
+   ```bash
+   tdm <commande>
 
 ## Usage
-- **Add a Task** : To add a task, use the following function: tdm add "task to add"
-- **Remove a Task** : To remove one or more tasks, use the following function:  
-  - tdm delete 1,2,3 # Removes tasks 1, 2, and 3
-  - tdm delete 2-4 # Removes tasks from 2 to 4
-- **Display Tasks** : To display the list of tasks: tdm list
+- **Add a Task** : To add a task, use the following function: 
+  ```bash 
+  tdm add "task to add"
+- **Remove a Task** : To remove one or more tasks, use the following function:
+  ```bash
+    tdm delete 1,2,3 # Removes tasks 1, 2, and 3
+    tdm delete 2-4 # Removes tasks from 2 to 4
+- **Display Tasks** : To display the list of tasks:
+  ```bash
+  tdm list
 
 ## Help and Support
 For any questions or issues, please open an issue on the GitHub repository or contact the author.
