@@ -30,8 +30,12 @@ if __name__ == "__main__" :
                 list()
                 exit(0)
         case "add" :
-            if len(sys.argv) < 3 :
+            if len(sys.argv) != 3 :
                 showHelpAdd()
+                exit(1)
+            elif sys.argv[2] == "help" or sys.argv[2] == "?" :
+                showHelpAdd()
+                exit(0)
             else :
                 add_todo(sys.argv[2])
         case "delete" :

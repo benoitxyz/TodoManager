@@ -2,33 +2,33 @@ from config import Config
 from init import test_todo_file
 
 def add_todo(new_task):
-    
+    # Check the constitency of the todo file
+    if test_todo_file() != "OK":
+        print('You need to initialiase the todoManager first.')
+        exit(1)
+
     try:
-        # Lire le contenu existant du fichier
+        # Read todo file content
         with open(Config.TODO_FILE, 'r', encoding='utf-8') as f:
-            lignes = f.readlines()
+            lines = f.readlines()
 
-        # Vérifier si le commentaire est présent
-        if test_todo_file() != "OK":
-            print('You need to initialiase the todoManager first.')
-            exit(1)
+        # Find end file comment to add the task before
+        comment_index = lines.index(Config.END_FILE_COMMENT + "\n") -1
 
-        # Trouver l'index du commentaire pour insérer la nouvelle tâche avant
-        index_commentaire = lignes.index(Config.END_FILE_COMMENT + "\n") -1
+        # Add task before comment
+        lines.insert(comment_index, f"- [ ] {new_task}\n")  # Markdown format
 
-        # Ajouter la nouvelle tâche avant le commentaire
-        lignes.insert(index_commentaire, f"- [ ] {new_task}\n")  # Format de tâche Markdown
-
-        # Écrire le contenu mis à jour dans le fichier
+        # Write updated content into the file
         with open(Config.TODO_FILE, 'w', encoding='utf-8') as f:
-            f.writelines(lignes)
+            f.writelines(lines)
 
-        #print(f"La tâche '{new_task}' a été ajoutée avec succès.")
+        exit(0)
 
     except FileNotFoundError:
         print(f"Erreur : Le fichier '{Config.TODO_FILE}' n'existe pas.")
     except Exception as e:
         print(f"Une erreur est survenue : {e}")
+    exit(1)
 
 def delete_todo(numeros):
     try:
