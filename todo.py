@@ -135,3 +135,78 @@ def complete_todo(numeros):
         print(f"Erreur : Le fichier '{Config.TODO_FILE}' n'existe pas.")
     except Exception as e:
         print(f"Une erreur est survenue : {e}")
+
+def move_todo(task_number, new_position):
+    try:
+        # Lire le contenu existant du fichier
+        with open(Config.TODO_FILE, 'r', encoding='utf-8') as f:
+            lignes = f.readlines()
+
+        if test_todo_file() != "OK":
+            print('You need to initialize the todoManager first.')
+            exit(1)
+
+        # Extraire les lignes de tâches
+        lignes_taches = [ligne for ligne in lignes if ligne.strip().startswith('- [ ]') or ligne.strip().startswith('- [x]')]
+
+        # Vérifier que le numéro de tâche et la nouvelle position sont valides
+        task_number = int(task_number)
+        new_position = int(new_position)
+
+        if task_number < 1 or task_number > len(lignes_taches):
+            print(f"Erreur : Le numéro de tâche {task_number} est invalide.")
+            return
+
+        if new_position < 1 or new_position > len(lignes_taches):
+            print(f"Erreur : La position {new_position} est invalide.")
+            return
+
+        # Déplacer la tâche
+        task_to_move = lignes_taches[task_number - 1]
+        lignes_taches.remove(task_to_move)
+        lignes_taches.insert(new_position - 1, task_to_move)
+
+        # Écrire le contenu mis à jour dans le fichier
+        lignes_a_conserver = []
+
+        # Conserver le titre et le commentaire de fin, et réécrire les tâches
+        index_tache = 0
+        for index, ligne in enumerate(lignes):
+            if index_tache < len(lignes_taches) and ligne.strip().startswith('- [ ]') or ligne.strip().startswith('- [x]'):
+                lignes_a_conserver.append(lignes_taches[index_tache])
+                index_tache += 1
+            else:
+                # Conserver le titre et le commentaire de fin
+                lignes_a_conserver.append(ligne)
+
+        # Écrire le contenu mis à jour dans le fichier
+        with open (Config.TODO_FILE, 'w', encoding='utf-8') as f:
+            f.writelines(lignes_a_conserver)
+
+        print(f"Tâche {task_number} déplacée à la position {new_position}.")
+
+    except FileNotFoundError:
+        print(f"Erreur : Le fichier '{Config.TODO_FILE}' n'existe pas.")
+    except ValueError:
+        print("Erreur : Veuillez entrer des numéros valides pour la tâche et la position.")
+    except Exception as e:
+        print(f"Une erreur est survenue : {e}")
+
+def is_todo_exist(position, task_lines):
+    try:
+
+        # Vérifier si la position est valide
+        position = int(position)
+
+        if position < 1 or position > len(task_lines):
+            return False
+
+        # If everything is valid, return true
+        return True
+
+    except ValueError:
+        print("Error : Please enter a valid number.")
+    except Exception as e:
+        print(f"Une erreur est survenue : {e}")
+
+    return False

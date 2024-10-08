@@ -74,3 +74,18 @@ def showHelpComplete():
 
     """
     print(help_text)
+
+def showHelpMove():
+    help_text = """
+    todoManager Move:
+
+    Used to move todo on your list.
+
+    Usage :
+        python todoManager.py move <todo number or range>
+    
+    Example :
+        python todoManager.py move 3 2 # move from position 3 to 2
+
+    """
+    print(help_text)
