@@ -3,24 +3,22 @@ from init import test_todo_file
 
 def list() :
     if test_todo_file() != "OK":
-        print('You need to initialiase the todoManager first.')
+        print('Error : You need to initialiase the todoManager first.')
         exit(1)
 
     try:
         with open(Config.TODO_FILE, 'r', encoding='utf-8') as f:
-            contenu = f.readlines()
+            content = f.readlines()
             num_tache = 1  # Compteur pour les tâches
 
-            # Afficher chaque ligne avec son numéro, en ne numérotant que les tâches
-            for ligne in contenu:
-                # Vérifier si la ligne contient une tâche (indiquée par '- [ ]' ou '- [x]')
-                if ligne.strip().startswith('- [ ]') or ligne.strip().startswith('- [x]'):
-                    print(f"{num_tache}: {ligne.rstrip()}")  # Afficher la ligne numérotée
-                    num_tache += 1  # Incrémenter le compteur pour la tâche
+            # Show each line with it's number by only numbering tasks
+            for line in content:
+                # test if line is a task (start with '- [ ]' or '- [x]')
+                if line.strip().startswith('- [ ]') or line.strip().startswith('- [x]'):
+                    print(f"{num_tache}: {line.rstrip()}")  # show numbered line
+                    num_tache += 1  # Increments count
                 else :
-                    print(f"{ligne.rstrip()}")
+                    print(f"{line.rstrip()}")
 
-    except FileNotFoundError:
-        print(f"Erreur : Le fichier '{Config.TODO_FILE}' n'existe pas.")
     except Exception as e:
         print(f"Une erreur est survenue : {e}")
